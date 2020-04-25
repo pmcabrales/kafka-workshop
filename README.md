@@ -1,8 +1,20 @@
-# Kafka for begginers workshop
+# Kafka for beginners workshop
 
 ### Goal
 
-The main goal of this PoC is to learn how does Kafka works and use it to implement the communication between two applications.
+The main goal of this workshop is to learn the basics of Kafka from the scratch. At the end of this workshop you'll know the following:
+
+* The  Apache Kafka Ecosystem Architecture
+
+* The Kafka Core Concepts: Topics, Partitions, Brokers, Replicas, Producers, Consumers, and more!
+
+* Launch your own Kafka cluster
+
+* Learn and Practice using the Kafka Command Line Interface (CLI)
+
+* Code Producer and Consumers using the Java API 
+
+* Overview of Advanced API Kafka Connect
 
 ### Requirements
 
