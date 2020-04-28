@@ -53,11 +53,7 @@ To end we are going to persist messages from the topic in a DB using Kafka Sink 
 ### Let's start
 #### Challenge 0 - Concepts and configuration
 
-Checkout code from brach challenge-0
-
-To start the kafka cluster and the two DDBB go to docker-compose directory and execute the command:
-
-> docker-compose up -d
+Checkout code from brach [challenge-0](https://github.com/pmcabrales/kafka-workshop/blob/challenge-0/README.md)
 
 #### Challenge 1 - Producer
 
