@@ -46,7 +46,7 @@ public class ShoppingListControllerIT {
 
     @Test
     public void getAllShouldReturn200() throws Exception {
-        Item mockItem = new Item("Milk", false);
+        Item mockItem = new Item("Milk", 1);
         List<Item> mockItems = Arrays.asList(mockItem);
         Mockito.when(itemService.findAllItems()).thenReturn(mockItems);
         MockitoAnnotations.initMocks(this);
@@ -60,23 +60,46 @@ public class ShoppingListControllerIT {
     }
 
     @Test
-    public void toggleItemCheckByIdShouldReturn200AndChangeChecked() throws Exception {
-        Item mockItem = new Item("Milk", false);
+    public void decreaseItemByIdShouldReturn200AndDecrease() throws Exception {
+        Item mockItem = new Item("Milk", 2);
         Mockito.when(itemService.findItemById(1L)).thenReturn(java.util.Optional.of(mockItem));
         MockitoAnnotations.initMocks(this);
 
-        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get("/{id}", "1")
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.put("/less/{id}", "1")
                 .accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();
         Item result = objectMapper.readValue(response.getContentAsByteArray(), Item.class);
 
         assertEquals(HttpStatus.OK, HttpStatus.valueOf(response.getStatus()));
         assertEquals(mockItem.getName(), result.getName());
-        assertEquals(mockItem.isChecked(), !result.isChecked());
+        assertEquals(mockItem.getQuantity()-1, result.getQuantity());
     }
 
     @Test
-    public void toggleItemCheckByIdShouldReturn404() throws Exception {
-        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get("/{id}", "-1")
+    public void increaseItemByIdShouldReturn200AndIncrease() throws Exception {
+        Item mockItem = new Item("Milk", 2);
+        Mockito.when(itemService.findItemById(1L)).thenReturn(java.util.Optional.of(mockItem));
+        MockitoAnnotations.initMocks(this);
+
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.put("/more/{id}", "1")
+                .accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();
+        Item result = objectMapper.readValue(response.getContentAsByteArray(), Item.class);
+
+        assertEquals(HttpStatus.OK, HttpStatus.valueOf(response.getStatus()));
+        assertEquals(mockItem.getName(), result.getName());
+        assertEquals(mockItem.getQuantity()+1, result.getQuantity());
+    }
+
+    @Test
+    public void decreaseItemByIdShouldReturn404() throws Exception {
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.put("/less/{id}", "-1")
+                .accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();
+
+        assertEquals(HttpStatus.NOT_FOUND, HttpStatus.valueOf(response.getStatus()));
+    }
+
+    @Test
+    public void increaseItemByIdShouldReturn404() throws Exception {
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.put("/more/{id}", "-1")
                 .accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();
 
         assertEquals(HttpStatus.NOT_FOUND, HttpStatus.valueOf(response.getStatus()));

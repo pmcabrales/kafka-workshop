@@ -19,18 +19,25 @@ public interface ShoppingListController {
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "Shopping list items")})
 	List<Item> getAllItems();
 
-	@ApiOperation(value = "Checks or unchecks the item")
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Item"),
-			@ApiResponse(code = 404, message = "Item not found")})
-	Item toggleItemCheckById(
-		@ApiParam(value = "Id of the item to toggle check", required = true) long id) throws JsonProcessingException;
-
 	@ApiOperation(value = "Create an item")
 	@ApiResponses(value = {
 			@ApiResponse(code = 201, message = "Item created successfully"),
 			@ApiResponse(code = 400, message = "Bad request: Possibly incorrect body format")})
 	Item createItem(
 		@ApiParam(value = "Item to be added", required = true) @Valid Item item) throws JsonProcessingException;
+
+	@ApiOperation(value = "Increase the quantity of the item in one unit")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Item"),
+			@ApiResponse(code = 404, message = "Item not found")})
+	Item increaseQuantity(
+			@ApiParam(value = "Id of the item to increase", required = true) long id) throws JsonProcessingException;
+
+	@ApiOperation(value = "Decrease the quantity of the item in one unit")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Item"),
+			@ApiResponse(code = 404, message = "Item not found")})
+	Item decreaseQuantity(
+			@ApiParam(value = "Id of the item to decrease", required = true) long id) throws JsonProcessingException;
 
 }

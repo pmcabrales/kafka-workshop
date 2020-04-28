@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 1543122880801666088L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroItem\",\"namespace\":\"com.kairos.kafka.workshop.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"checked\",\"type\":\"boolean\"},{\"name\":\"update_ts\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
+  private static final long serialVersionUID = -4790395166032626898L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroItem\",\"namespace\":\"com.kairos.kafka.workshop.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"updateTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -53,8 +53,8 @@ public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implem
 
    private long id;
    private java.lang.String name;
-   private boolean checked;
-   private long update_ts;
+   private int quantity;
+   private long updateTimestamp;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -67,14 +67,14 @@ public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implem
    * All-args constructor.
    * @param id The new value for id
    * @param name The new value for name
-   * @param checked The new value for checked
-   * @param update_ts The new value for update_ts
+   * @param quantity The new value for quantity
+   * @param updateTimestamp The new value for updateTimestamp
    */
-  public AvroItem(java.lang.Long id, java.lang.String name, java.lang.Boolean checked, java.lang.Long update_ts) {
+  public AvroItem(java.lang.Long id, java.lang.String name, java.lang.Integer quantity, java.lang.Long updateTimestamp) {
     this.id = id;
     this.name = name;
-    this.checked = checked;
-    this.update_ts = update_ts;
+    this.quantity = quantity;
+    this.updateTimestamp = updateTimestamp;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -83,8 +83,8 @@ public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implem
     switch (field$) {
     case 0: return id;
     case 1: return name;
-    case 2: return checked;
-    case 3: return update_ts;
+    case 2: return quantity;
+    case 3: return updateTimestamp;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -95,8 +95,8 @@ public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implem
     switch (field$) {
     case 0: id = (java.lang.Long)value$; break;
     case 1: name = (java.lang.String)value$; break;
-    case 2: checked = (java.lang.Boolean)value$; break;
-    case 3: update_ts = (java.lang.Long)value$; break;
+    case 2: quantity = (java.lang.Integer)value$; break;
+    case 3: updateTimestamp = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -120,20 +120,20 @@ public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implem
 
 
   /**
-   * Gets the value of the 'checked' field.
-   * @return The value of the 'checked' field.
+   * Gets the value of the 'quantity' field.
+   * @return The value of the 'quantity' field.
    */
-  public java.lang.Boolean getChecked() {
-    return checked;
+  public java.lang.Integer getQuantity() {
+    return quantity;
   }
 
 
   /**
-   * Gets the value of the 'update_ts' field.
-   * @return The value of the 'update_ts' field.
+   * Gets the value of the 'updateTimestamp' field.
+   * @return The value of the 'updateTimestamp' field.
    */
-  public java.lang.Long getUpdateTs() {
-    return update_ts;
+  public java.lang.Long getUpdateTimestamp() {
+    return updateTimestamp;
   }
 
 
@@ -171,8 +171,8 @@ public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implem
 
     private long id;
     private java.lang.String name;
-    private boolean checked;
-    private long update_ts;
+    private int quantity;
+    private long updateTimestamp;
 
     /** Creates a new Builder */
     private Builder() {
@@ -193,12 +193,12 @@ public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implem
         this.name = data().deepCopy(fields()[1].schema(), other.name);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.checked)) {
-        this.checked = data().deepCopy(fields()[2].schema(), other.checked);
+      if (isValidValue(fields()[2], other.quantity)) {
+        this.quantity = data().deepCopy(fields()[2].schema(), other.quantity);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.update_ts)) {
-        this.update_ts = data().deepCopy(fields()[3].schema(), other.update_ts);
+      if (isValidValue(fields()[3], other.updateTimestamp)) {
+        this.updateTimestamp = data().deepCopy(fields()[3].schema(), other.updateTimestamp);
         fieldSetFlags()[3] = true;
       }
     }
@@ -217,12 +217,12 @@ public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implem
         this.name = data().deepCopy(fields()[1].schema(), other.name);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.checked)) {
-        this.checked = data().deepCopy(fields()[2].schema(), other.checked);
+      if (isValidValue(fields()[2], other.quantity)) {
+        this.quantity = data().deepCopy(fields()[2].schema(), other.quantity);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.update_ts)) {
-        this.update_ts = data().deepCopy(fields()[3].schema(), other.update_ts);
+      if (isValidValue(fields()[3], other.updateTimestamp)) {
+        this.updateTimestamp = data().deepCopy(fields()[3].schema(), other.updateTimestamp);
         fieldSetFlags()[3] = true;
       }
     }
@@ -305,77 +305,77 @@ public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implem
     }
 
     /**
-      * Gets the value of the 'checked' field.
+      * Gets the value of the 'quantity' field.
       * @return The value.
       */
-    public java.lang.Boolean getChecked() {
-      return checked;
+    public java.lang.Integer getQuantity() {
+      return quantity;
     }
 
     /**
-      * Sets the value of the 'checked' field.
-      * @param value The value of 'checked'.
+      * Sets the value of the 'quantity' field.
+      * @param value The value of 'quantity'.
       * @return This builder.
       */
-    public com.kairos.kafka.workshop.avro.AvroItem.Builder setChecked(boolean value) {
+    public com.kairos.kafka.workshop.avro.AvroItem.Builder setQuantity(int value) {
       validate(fields()[2], value);
-      this.checked = value;
+      this.quantity = value;
       fieldSetFlags()[2] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'checked' field has been set.
-      * @return True if the 'checked' field has been set, false otherwise.
+      * Checks whether the 'quantity' field has been set.
+      * @return True if the 'quantity' field has been set, false otherwise.
       */
-    public boolean hasChecked() {
+    public boolean hasQuantity() {
       return fieldSetFlags()[2];
     }
 
 
     /**
-      * Clears the value of the 'checked' field.
+      * Clears the value of the 'quantity' field.
       * @return This builder.
       */
-    public com.kairos.kafka.workshop.avro.AvroItem.Builder clearChecked() {
+    public com.kairos.kafka.workshop.avro.AvroItem.Builder clearQuantity() {
       fieldSetFlags()[2] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'update_ts' field.
+      * Gets the value of the 'updateTimestamp' field.
       * @return The value.
       */
-    public java.lang.Long getUpdateTs() {
-      return update_ts;
+    public java.lang.Long getUpdateTimestamp() {
+      return updateTimestamp;
     }
 
     /**
-      * Sets the value of the 'update_ts' field.
-      * @param value The value of 'update_ts'.
+      * Sets the value of the 'updateTimestamp' field.
+      * @param value The value of 'updateTimestamp'.
       * @return This builder.
       */
-    public com.kairos.kafka.workshop.avro.AvroItem.Builder setUpdateTs(long value) {
+    public com.kairos.kafka.workshop.avro.AvroItem.Builder setUpdateTimestamp(long value) {
       validate(fields()[3], value);
-      this.update_ts = value;
+      this.updateTimestamp = value;
       fieldSetFlags()[3] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'update_ts' field has been set.
-      * @return True if the 'update_ts' field has been set, false otherwise.
+      * Checks whether the 'updateTimestamp' field has been set.
+      * @return True if the 'updateTimestamp' field has been set, false otherwise.
       */
-    public boolean hasUpdateTs() {
+    public boolean hasUpdateTimestamp() {
       return fieldSetFlags()[3];
     }
 
 
     /**
-      * Clears the value of the 'update_ts' field.
+      * Clears the value of the 'updateTimestamp' field.
       * @return This builder.
       */
-    public com.kairos.kafka.workshop.avro.AvroItem.Builder clearUpdateTs() {
+    public com.kairos.kafka.workshop.avro.AvroItem.Builder clearUpdateTimestamp() {
       fieldSetFlags()[3] = false;
       return this;
     }
@@ -387,8 +387,8 @@ public class AvroItem extends org.apache.avro.specific.SpecificRecordBase implem
         AvroItem record = new AvroItem();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.Long) defaultValue(fields()[0]);
         record.name = fieldSetFlags()[1] ? this.name : (java.lang.String) defaultValue(fields()[1]);
-        record.checked = fieldSetFlags()[2] ? this.checked : (java.lang.Boolean) defaultValue(fields()[2]);
-        record.update_ts = fieldSetFlags()[3] ? this.update_ts : (java.lang.Long) defaultValue(fields()[3]);
+        record.quantity = fieldSetFlags()[2] ? this.quantity : (java.lang.Integer) defaultValue(fields()[2]);
+        record.updateTimestamp = fieldSetFlags()[3] ? this.updateTimestamp : (java.lang.Long) defaultValue(fields()[3]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

@@ -12,8 +12,10 @@ public interface ItemService {
 
 	Optional<Item> findItemById(long id);
 
-	Item toggleItemCheckById(Item item) throws JsonProcessingException;
-
 	Item save(Item item) throws JsonProcessingException;
+
+	Item increaseItemQuantityById(Item item) throws JsonProcessingException;
+
+	Item decreaseItemQuantityById(Item item) throws JsonProcessingException;
 
 }

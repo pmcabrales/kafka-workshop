@@ -59,9 +59,19 @@ Checkout code from brach [challenge-0](https://github.com/pmcabrales/kafka-works
 
 Checkout code from brach challenge-1
 
+
+Create the topic we are going to produce to:
+> kafka-topics --zookeeper localhost:2181 --topic shopping-list --create --partitions 3 --replication-factor 1
+  
+
+
+
 #### Challenge 2 - Consumer
 
 Checkout code from brach challenge-2
+
+
+
 
 #### Challenge 3 - DB Sink
 
@@ -91,3 +101,7 @@ In this case we need to add a JDBC Source Connector:
 ![connectors_source_jdbc](images/connectors_source_jdbc.png?raw=true "PoC Structure") 
 
 After that you have to paste this configuration [ (link to source_postgreSQL.properties)](connect/source_postgreSQL.properties) to start the source connector.
+
+
+Create the topic we are going to source to (source connect) and consume from (java consumer):
+> kafka-topics --zookeeper localhost:2181 --topic jdbc-shopping-list --create --partitions 3 --replication-factor 1

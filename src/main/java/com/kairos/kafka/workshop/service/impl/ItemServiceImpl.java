@@ -34,16 +34,25 @@ public class ItemServiceImpl implements ItemService {
         Map<Long, Item> map = consumer.getShoppingItems();
         return Optional.ofNullable(map.get(id));
     }
-
-    public Item toggleItemCheckById(Item item) throws JsonProcessingException {
-        item.setChecked(!item.isChecked());
-        producer.send(item.getId(), item);
-        return item;
-    }
-
     public Item save(Item item) throws JsonProcessingException {
         item.setId(lastId.incrementAndGet());
         producer.send(item.getId(), item);
         return item;
     }
+
+    public Item increaseItemQuantityById(Item item) throws JsonProcessingException {
+        item.setQuantity(item.getQuantity()+1);
+        producer.send(item.getId(), item);
+        return item;
+    }
+
+    public Item decreaseItemQuantityById(Item item) throws JsonProcessingException {
+        int quantity = item.getQuantity();
+        if(quantity > 0) {
+            item.setQuantity(quantity-1);
+            producer.send(item.getId(), item);
+        }
+        return item;
+    }
+
 }

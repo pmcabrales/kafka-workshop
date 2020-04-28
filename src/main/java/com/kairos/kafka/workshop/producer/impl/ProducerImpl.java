@@ -28,7 +28,6 @@ public class ProducerImpl implements Producer {
     private Properties producerConfiguration;
     private KafkaProducer<String, AvroItem> producer;
 
-    //TODO: Use spring kafka templates to simplify
     @PostConstruct
     public void init() {
         producerConfiguration = new Properties();

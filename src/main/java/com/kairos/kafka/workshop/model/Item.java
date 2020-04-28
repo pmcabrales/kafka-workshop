@@ -1,8 +1,6 @@
 package com.kairos.kafka.workshop.model;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -15,19 +13,19 @@ public class Item {
 
 	@ApiModelProperty(notes = "The item's name")
 	private String name;
-	@ApiModelProperty(notes = "True to mark item as checked")
-	private boolean checked;
+	@ApiModelProperty(notes = "Quantity of the item")
+	private int quantity = 0;
 	@ApiModelProperty(notes = "Timestamp. Get the creation EPOCH Time in milliseconds and changes with every update")
-	private long update_ts;
+	private long updateTimestamp;
 
 	public Item() {
 	}
 
-	public Item(String name, boolean checked) {
+	public Item(String name, int quantity) {
 		super();
 		this.name = name;
-		this.checked = checked;
-		this.update_ts = Instant.now().toEpochMilli();
+		this.quantity = quantity;
+		this.updateTimestamp = Instant.now().toEpochMilli();
 	}
 
 	public long getId() {
@@ -38,32 +36,28 @@ public class Item {
 		return name;
 	}
 
-	public boolean isChecked() {
-		return checked;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public long getUpdate_ts() {
-		return update_ts;
+	public long getUpdateTimestamp() {
+		return updateTimestamp;
 	}
 
 	public void setId(long id) {
 		this.id = id;
+		this.updateTimestamp = Instant.now().toEpochMilli();
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+		this.updateTimestamp = Instant.now().toEpochMilli();
 	}
 
-	public void setChecked(boolean checked) {
-		this.checked = checked;
-	}
-
-	public void setUpdate_ts(long update_ts) {
-		this.update_ts = update_ts;
-	}
 
 	@Override
     public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", checked=" + checked + "]";
+		return "Item [id=" + id + ", name=" + name + ", quantity=" + quantity +
+				", updateTimestamp=" + updateTimestamp + "]";
     }
 }

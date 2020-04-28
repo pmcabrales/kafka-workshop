@@ -12,11 +12,11 @@
       "type": "string"
     },
     {
-      "name": "checked",
-      "type": "boolean"
+      "name": "quantity",
+      "type": "int"
     },
     {
-      "name": "update_ts",
+      "name": "updateTimestamp",
       "type": "long",
       "logicalType": "timestamp-millis"
     }

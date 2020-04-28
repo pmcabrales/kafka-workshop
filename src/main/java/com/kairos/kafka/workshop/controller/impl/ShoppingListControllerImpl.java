@@ -23,17 +23,24 @@ public class ShoppingListControllerImpl implements ShoppingListController {
         return itemService.findAllItems();
     }
 
-    @PutMapping("/{id}")
-    public Item toggleItemCheckById(@PathVariable long id) throws JsonProcessingException {
-        Optional<Item> item = itemService.findItemById(id);
-        if (!item.isPresent()) throw new NoSuchElementException();
-        return itemService.toggleItemCheckById(item.get());
-    }
-
     @PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
     public Item createItem(@RequestBody Item item) throws JsonProcessingException {
         return itemService.save(item);
+    }
+
+    @PutMapping("/more/{id}")
+    public Item increaseQuantity(@PathVariable long id) throws JsonProcessingException {
+        Optional<Item> item = itemService.findItemById(id);
+        if (!item.isPresent()) throw new NoSuchElementException();
+        return itemService.increaseItemQuantityById(item.get());
+    }
+
+    @PutMapping("/less/{id}")
+    public Item decreaseQuantity(@PathVariable long id) throws JsonProcessingException {
+        Optional<Item> item = itemService.findItemById(id);
+        if (!item.isPresent()) throw new NoSuchElementException();
+        return itemService.decreaseItemQuantityById(item.get());
     }
 
 }
