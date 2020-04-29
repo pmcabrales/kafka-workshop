@@ -2,12 +2,11 @@ package com.kairos.kafka.workshop.producer.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kairos.kafka.workshop.avro.AvroItem;
+import com.kairos.kafka.workshop.model.Item;
 import com.kairos.kafka.workshop.producer.Producer;
 import com.kairos.kafka.workshop.utils.Topics;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -26,7 +25,7 @@ public class ProducerImpl implements Producer {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     private Properties producerConfiguration;
-    private KafkaProducer<String, AvroItem> producer;
+    private KafkaProducer<String, String> producer;
 
     @PostConstruct
     public void init() {
@@ -35,21 +34,21 @@ public class ProducerImpl implements Producer {
         producerConfiguration.setProperty(ProducerConfig.ACKS_CONFIG, "all");
         producerConfiguration.setProperty(ProducerConfig.RETRIES_CONFIG, "10");
         producerConfiguration.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        producerConfiguration.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
-        producerConfiguration.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+        producerConfiguration.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     }
 
     @Override
-    public void send(long key, Object item) throws JsonProcessingException {
-        AvroItem avroItem = transformItemToAvro(item);
-
+    public void send(long key, Item item) throws JsonProcessingException {
         producer = new KafkaProducer<>(producerConfiguration);
 
-        ProducerRecord<String, AvroItem> producerRecord = new ProducerRecord<>(
-                Topics.TOPIC_SHOPPING_LIST, String.valueOf(key), avroItem
+        ObjectMapper objectMapper = new ObjectMapper();
+        String stringItem = objectMapper.writeValueAsString(item);
+
+        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(
+                Topics.TOPIC_SHOPPING_LIST, String.valueOf(key), stringItem
         );
 
-        System.out.println(avroItem);
+        System.out.println(item);
         producer.send(producerRecord, (metadata, exception) -> {
             if (exception == null) {
                 logger.info("Received new metadata. \n" +
@@ -64,13 +63,6 @@ public class ProducerImpl implements Producer {
 
         producer.flush();
         producer.close();
-    }
-
-    private AvroItem transformItemToAvro(Object object) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        String entryString = objectMapper.writeValueAsString(object);
-        return objectMapper.readValue(entryString, AvroItem.class);
     }
 
 }
