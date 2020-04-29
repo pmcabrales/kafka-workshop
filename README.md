@@ -33,7 +33,7 @@ It's mandatory to have installed the next tools before the workshop beginning (D
 
 * Alejandro Quesada (alejandro.quesada@kairosds.com) 
 
-* Pedro Martinez (pedro.martinez@kairosds.com) Software Engineer that has been working with Java technologies for the last 10 years.
+* Pedro Martínez (pedro.martinez@kairosds.com) Software Engineer that has been working with Java technologies for the last 10 years.
 
 ### What are we going to do?
 

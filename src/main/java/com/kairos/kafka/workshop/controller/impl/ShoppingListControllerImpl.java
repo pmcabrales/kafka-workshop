@@ -18,12 +18,12 @@ public class ShoppingListControllerImpl implements ShoppingListController {
     @Autowired
     private ItemService itemService;
 
-    @GetMapping("")
+    @GetMapping("/")
     public List<Item> getAllItems() {
         return itemService.findAllItems();
     }
 
-    @PostMapping("")
+    @PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
     public Item createItem(@RequestBody Item item) throws JsonProcessingException {
         return itemService.save(item);
