@@ -33,19 +33,19 @@ It's mandatory to have installed the next tools before the workshop beginning (D
 
 * Alejandro Quesada (alejandro.quesada@kairosds.com) 
 
-* Pedro Martínez (pedro.martinez@kairosds.com) Software Engineer that has been working with Java technologies for the last 10 years.
+* Pedro Martínez (pmcabrales@gmail.com) Software Engineer that has been working with Java technologies for the last 10 years.
 
 ### What are we going to do?
 
 ![workshop_structure](workshop_structure.png?raw=true "Workshop Structure") 
 
-First of all we are going to mount in our localhost a docker image with all the necessary Kafka tools. We have selected an image from Landoop that includes a Kafka cluster, Zookeeper, Schema registry, some Connectors, a Kafka user interface and some more tools.
+First of all we are mounting a docker image in our localhost with all the necessary Kafka tools. We have selected an image from Landoop that includes a Kafka cluster, Zookeeper, Schema registry, some Connectors, a Kafka user interface and some more tools.
 
-With our Kafka cluster working we are going to play along with the CLI. We are going to create a topic and send/receive messages to/from it.
+With our Kafka cluster working we are going to play along with the CLI. The goal of this section is to create a topic and send/receive messages to/from it.
 
-After that we are going to build a very basic Spring application that exposes an API to create messages using Producer API.
+After that it's time to code! We'll build a very basic Spring application that exposes an API to create messages using Producer API.
 
-Later on we are going to use the Consumer API to implement a receiver for the messages created in the previous step.
+Later on, in order to consume the messages produced in the previous section, we will use the Consumer API to implement a receiver.
 
 To end we are going to persist messages from the topic in a DB using Kafka Sink Connect and retrieve them after into another topic using Source Connect.
 
@@ -67,32 +67,6 @@ Checkout code from brach [challenge-2](https://github.com/pmcabrales/kafka-works
 
 Checkout code from brach [challenge-3](https://github.com/pmcabrales/kafka-workshop/blob/challenge-3/README.md)
 
-To configure Sink Connect you have to access Landoop Kafka UI at http://localhost:3030
-Once there access to connectors section:
-
-![connectors_step1](images/connectors_step1.png?raw=true "PoC Structure") 
-
-Select "New" and you should see many available connectors. For this case we are going to use a JDBC Sink Connector:
-
-![connectors_sink_jdbc](images/connectors_sink_jdbc.png?raw=true "PoC Structure") 
-
-After that you have to paste this configuration [(link to sink_postgreSQL.properties)](connect/sink_postgreSQL.properties) to start the sink connector.
-
-That's all, automatically your database will start receiving data from the topic.
-
 #### Challenge 4 - DB Source
 
 Checkout code from brach [challenge-4](https://github.com/pmcabrales/kafka-workshop/blob/challenge-4/README.md)
-
-
-To configure Source Connect you have to access Landoop Kafka UI like in [Challenge 3 - DB Sink](#Challenge 3 - DB Sink)
-
-In this case we need to add a JDBC Source Connector:
-
-![connectors_source_jdbc](images/connectors_source_jdbc.png?raw=true "PoC Structure") 
-
-After that you have to paste this configuration [ (link to source_postgreSQL.properties)](connect/source_postgreSQL.properties) to start the source connector.
-
-
-Create the topic we are going to source to (source connect) and consume from (java consumer):
-> kafka-topics --zookeeper localhost:2181 --topic jdbc-shopping-list --create --partitions 3 --replication-factor 1
