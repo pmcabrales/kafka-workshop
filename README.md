@@ -3,7 +3,34 @@
 Now we are going to configure a JDBC Sink Connector. 
 
 ## Step 1
-Create an Avro object.
+Create an Avro object. Should be something like this:
+
+```
+{
+  "type": "record",
+  "name": "AvroItem",
+  "namespace": "com.kairos.kafka.workshop.avro",
+  "fields": [
+    {
+      "name": "id",
+      "type": "long"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "quantity",
+      "type": "int"
+    },
+    {
+      "name": "updateTimestamp",
+      "type": "long",
+      "logicalType": "timestamp-millis"
+    }
+  ]
+}
+```
 
 ## Step 2
 Create the topic we are going to source to (source connect) and consume from (java consumer):
