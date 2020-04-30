@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "955ec6a6-3403-47ba-b1cf-2a2aad78fc68",
+		"name": "KafkaWorkshop",
+		"description": "Test for the Kafka workshop API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						""
+					]
+				},
+				"description": "Retrieve all items from the list"
+			},
+			"response": []
+		},
+		{
+			"name": "Increase item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/more/1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"more",
+						"1"
+					]
+				},
+				"description": "Sum one to item quantity"
+			},
+			"response": []
+		},
+		{
+			"name": "Decrease item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/less/1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"less",
+						"1"
+					]
+				},
+				"description": "Sustract one to item quantity"
+			},
+			"response": []
+		},
+		{
+			"name": "Create item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bread\",\n    \"quantity\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						""
+					]
+				},
+				"description": "Create a new item"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "09b658e2-9d5d-43a6-aef6-e67c7023fc99",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2956ec61-6640-4b87-924b-e1057bfb33d1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "da6c4e0a-2ede-42e7-b5df-9f3c101fd447",
+			"key": "host",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"id": "dfc292ee-897f-4696-8ddf-f4664039dd60",
+			"key": "port",
+			"value": "8443",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

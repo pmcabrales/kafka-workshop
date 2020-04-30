@@ -12,4 +12,7 @@ Create the topic we are going to produce to:
 We provide a basic API to add items to a shopping list:
 http://localhost:8443/swagger-ui.html#/
 
+Import in Postman the provided test collection [(postman collection)](/postman/KafkaWorkshop.postman_collection.json)
+
+## Step 3
 Complete the TODO's to write a full functional producer.
