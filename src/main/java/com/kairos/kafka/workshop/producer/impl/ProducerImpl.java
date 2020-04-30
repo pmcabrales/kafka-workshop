@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kairos.kafka.workshop.avro.AvroItem;
+import com.kairos.kafka.workshop.model.Item;
 import com.kairos.kafka.workshop.producer.Producer;
 import com.kairos.kafka.workshop.utils.Topics;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
@@ -40,7 +41,7 @@ public class ProducerImpl implements Producer {
     }
 
     @Override
-    public void send(long key, Object item) throws JsonProcessingException {
+    public void send(long key, Item item) throws JsonProcessingException {
         AvroItem avroItem = transformItemToAvro(item);
 
         producer = new KafkaProducer<>(producerConfiguration);
@@ -66,10 +67,10 @@ public class ProducerImpl implements Producer {
         producer.close();
     }
 
-    private AvroItem transformItemToAvro(Object object) throws JsonProcessingException {
+    private AvroItem transformItemToAvro(Item item) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        String entryString = objectMapper.writeValueAsString(object);
+        String entryString = objectMapper.writeValueAsString(item);
         return objectMapper.readValue(entryString, AvroItem.class);
     }
 
