@@ -30,8 +30,6 @@ public class ProducerImpl implements Producer {
     public void init() {
         producerConfiguration = new Properties();
         producerConfiguration.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        producerConfiguration.setProperty(ProducerConfig.ACKS_CONFIG, "all");
-        producerConfiguration.setProperty(ProducerConfig.RETRIES_CONFIG, "10");
         producerConfiguration.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         producerConfiguration.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     }
