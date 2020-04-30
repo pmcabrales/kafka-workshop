@@ -34,6 +34,7 @@ public class ItemServiceImpl implements ItemService {
         Map<Long, Item> map = consumer.getShoppingItems();
         return Optional.ofNullable(map.get(id));
     }
+
     public Item save(Item item) throws JsonProcessingException {
         item.setId(lastId.incrementAndGet());
         producer.send(item.getId(), item);

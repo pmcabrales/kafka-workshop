@@ -57,25 +57,15 @@ Checkout code from brach [challenge-0](https://github.com/pmcabrales/kafka-works
 
 #### Challenge 1 - Producer
 
-Checkout code from brach challenge-1
-
-
-Create the topic we are going to produce to:
-> kafka-topics --zookeeper localhost:2181 --topic shopping-list --create --partitions 3 --replication-factor 1
-  
-
-
+Checkout code from brach [challenge-1](https://github.com/pmcabrales/kafka-workshop/blob/challenge-1/README.md)
 
 #### Challenge 2 - Consumer
 
-Checkout code from brach challenge-2
-
-
-
+Checkout code from brach [challenge-2](https://github.com/pmcabrales/kafka-workshop/blob/challenge-2/README.md)
 
 #### Challenge 3 - DB Sink
 
-Checkout code from brach challenge-3
+Checkout code from brach [challenge-3](https://github.com/pmcabrales/kafka-workshop/blob/challenge-3/README.md)
 
 To configure Sink Connect you have to access Landoop Kafka UI at http://localhost:3030
 Once there access to connectors section:
@@ -92,7 +82,8 @@ That's all, automatically your database will start receiving data from the topic
 
 #### Challenge 4 - DB Source
 
-Checkout code from brach challenge-4
+Checkout code from brach [challenge-4](https://github.com/pmcabrales/kafka-workshop/blob/challenge-4/README.md)
+
 
 To configure Source Connect you have to access Landoop Kafka UI like in [Challenge 3 - DB Sink](#Challenge 3 - DB Sink)
 
