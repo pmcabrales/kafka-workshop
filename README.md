@@ -37,7 +37,7 @@ It's mandatory to have installed the next tools before the workshop beginning (D
 
 ### What are we going to do?
 
-![workshop_structure](workshop_structure.png?raw=true "Workshop Structure") 
+![workshop_structure](workshop_str.png?raw=true "Workshop Structure") 
 
 First of all we are mounting a docker image in our localhost with all the necessary Kafka tools. We have selected an image from Landoop that includes a Kafka cluster, Zookeeper, Schema registry, some Connectors, a Kafka user interface and some more tools.
 
