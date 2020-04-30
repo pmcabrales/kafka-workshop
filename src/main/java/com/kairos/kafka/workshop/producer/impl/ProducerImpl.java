@@ -4,11 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kairos.kafka.workshop.model.Item;
 import com.kairos.kafka.workshop.producer.Producer;
-import com.kairos.kafka.workshop.utils.Topics;
 import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,25 +23,22 @@ public class ProducerImpl implements Producer {
 
     @PostConstruct
     public void init() {
+        //TODO: Add basic configuration
         producerConfiguration = new Properties();
-        producerConfiguration.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        producerConfiguration.setProperty(ProducerConfig.ACKS_CONFIG, "all");
-        producerConfiguration.setProperty(ProducerConfig.RETRIES_CONFIG, "10");
-        producerConfiguration.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        producerConfiguration.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     }
 
     @Override
     public void send(long key, Item item) throws JsonProcessingException {
-        producer = new KafkaProducer<>(producerConfiguration);
+        //TODO: Init the producer
 
+        //Map our item to string
         ObjectMapper objectMapper = new ObjectMapper();
         String stringItem = objectMapper.writeValueAsString(item);
 
-        ProducerRecord<String, String> producerRecord = new ProducerRecord<>(
-                Topics.TOPIC_SHOPPING_LIST, String.valueOf(key), stringItem
-        );
+        //TODO: Create a record for producing
 
+        //TODO: Send record
+        /*
         System.out.println(item);
         producer.send(producerRecord, (metadata, exception) -> {
             if (exception == null) {
@@ -58,9 +51,10 @@ public class ProducerImpl implements Producer {
                 logger.error("Error while producing", exception);
             }
         });
+        */
 
-        producer.flush();
-        producer.close();
+        //TODO: Close the producer
+
     }
 
 }
