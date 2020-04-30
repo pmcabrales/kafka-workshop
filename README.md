@@ -4,7 +4,7 @@ Let's play with Kafka
 
 ## Step 1 - Start Kafka cluster
 
-Start the kafka cluster and the two DDBB. Go to docker-compose directory and execute the command:
+Start the kafka cluster and the postgreSQL. Go to docker-compose directory and execute the command:
 
 > docker-compose up -d
 
