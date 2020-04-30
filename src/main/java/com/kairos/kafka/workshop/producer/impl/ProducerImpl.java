@@ -24,12 +24,10 @@ public class ProducerImpl implements Producer {
 
     private Properties producerConfiguration;
 
-    //TODO: Our producer is going to pass an Avro
     private KafkaProducer<String, String> producer;
 
     @PostConstruct
     public void init() {
-        //TODO: We need to add the schema registry to our config. Are the serializers right?
         producerConfiguration = new Properties();
         producerConfiguration.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         producerConfiguration.setProperty(ProducerConfig.ACKS_CONFIG, "all");
@@ -42,7 +40,6 @@ public class ProducerImpl implements Producer {
     public void send(long key, Item item) throws JsonProcessingException {
         producer = new KafkaProducer<>(producerConfiguration);
 
-        //TODO: Instead of mapping Item to String. What do we have to do?
         ObjectMapper objectMapper = new ObjectMapper();
         String stringItem = objectMapper.writeValueAsString(item);
 
@@ -66,15 +63,5 @@ public class ProducerImpl implements Producer {
         producer.flush();
         producer.close();
     }
-
-    //TODO: ¡HINT! Use this function if needed.
-    /*
-    private AvroItem transformItemToAvro(Item item) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        String entryString = objectMapper.writeValueAsString(item);
-        return objectMapper.readValue(entryString, AvroItem.class);
-    }
-    */
 
 }

@@ -22,19 +22,7 @@ public class ConsumerImpl implements Consumer {
 
     private static Map<Long, Item> shoppingItems = new HashMap<>();
 
-    @KafkaListener(topics = Topics.TOPIC_BD_SHOPPING_LIST, groupId = "kafka-workshop")
-    public void receive(ConsumerRecord<String, String> record){
-        logger.info("Consumer is processing record with Key: " + record.key() + ", Value: " + record.value());
-
-        ObjectMapper objectMapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        try {
-            Item receivedItem = objectMapper.readValue(record.value(), Item.class);
-            shoppingItems.put(receivedItem.getId(), receivedItem);
-        } catch (JsonProcessingException e) {
-            logger.error("Error while mapping entry: " + record.value(), e);
-        }
-    }
+    //TODO: Write our consumer. Use @KafkaListeners
 
     public Map<Long, Item> getShoppingItems() {
         return shoppingItems;
