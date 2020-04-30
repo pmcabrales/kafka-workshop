@@ -12,7 +12,7 @@ Start the kafka cluster and the postgreSQL. Go to docker-compose directory and e
 
 From the terminal open a bash inside the Docker image:
 
-> docker run --rm -it -v "$(pwd)":/workshop --net=host landoop/fast-data-dev:2.3.1 bash
+> docker run --rm -it -v "$(pwd)":/workshop --net=host landoop/fast-data-dev:cp3.3.0 bash
 
 Now it's time to play with topics:
 
