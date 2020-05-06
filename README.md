@@ -31,7 +31,7 @@ It's mandatory to have installed the next tools before the workshop beginning (D
 
 ### About us
 
-* Alejandro Quesada (alejandro.quesada@kairosds.com) 
+* Alejandro Quesada (alejandro.quesada@kairosds.com) Computer Engineer and Software Engineer. Backend developer at Kairós DS.
 
 * Pedro Martínez (pmcabrales@gmail.com) Software Engineer that has been working with Java technologies for the last 10 years.
 
