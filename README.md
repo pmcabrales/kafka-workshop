@@ -34,7 +34,7 @@ Create an Avro object. Should be something like this:
 
 ## Step 2
 Create the topic we are going to source to (source connect) and consume from (java consumer):
-> kafka-topics --zookeeper localhost:2181 --topic jdbc-shopping-list --create --partitions 3 --replication-factor 1
+> kafka-topics --zookeeper localhost:2181 --topic shopping-list --create --partitions 3 --replication-factor 1
 
 ## Step 3
 Modify our producer code to send the new Avro instead a String.
