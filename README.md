@@ -15,9 +15,6 @@ In this case we need to add a JDBC Source Connector:
 
 After that you have to paste this configuration [ (link to source_postgreSQL.properties)](connect/source_postgreSQL.properties) to start the source connector.
 
-## Step 3
-Change the code to consume the new topic we have created in step 1.
-
 Now you have finished the workshop. Congratulations!
 
 
